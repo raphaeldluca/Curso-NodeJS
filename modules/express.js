@@ -1,5 +1,6 @@
 // Importa o módulo express
 const express = require("express");
+const UserModel = require("../src/models/user.model");
 
 // Cria uma instância do aplicativo Express
 const app = express();
@@ -34,5 +35,10 @@ app.get("/users", (req, res) => {
   res.status(200).json(users);
 });
 
+app.post("/users", (req, res) => {
+  const user = UserModel.create(req.body);
+
+  res.status(201).json(user);
+});
 // Inicializa o servidor para escutar na porta definida
 app.listen(port, () => console.log(`Listening on port ${port}`));
